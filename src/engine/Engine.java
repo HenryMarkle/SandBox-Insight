@@ -158,5 +158,6 @@ public class Engine implements Runnable {
 	
 	public static void main(String[] args) throws Throwable
 	{
+		StandardCommands.init();  // Must run this function first, or standard commands wont load.
 	}
 }

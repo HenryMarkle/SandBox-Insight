@@ -5,6 +5,12 @@ import state.*;
 import java.io.*;
 import java.io.File;
 
+/*
+	TODO: Move every standard command definition to its own file.
+	
+	Warning: Ugly code ahead; proceed with caution
+*/ 
+
 public abstract class StandardCommands 
 {
 	private static Command[] d = 

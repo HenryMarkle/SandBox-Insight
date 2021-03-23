@@ -19,8 +19,8 @@ package engine;
 */
 
 public abstract class Command {
-	public final String name;			// The name of the command
-	public final int argNum;			// How many arguments
+	public final String name;		// The name of the command
+	public final int argNum;		// How many arguments
 	public final String[] arguments;	// Description of every argument
 	
 	public abstract boolean execute(String[] line, Modifyable data);

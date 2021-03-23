@@ -8,7 +8,7 @@ import java.io.File;
 /*
 	TODO: Move every standard command definition to its own file.
 	
-	Warning: Ugly code ahead; proceed with caution
+	Warning: Ugly code ahead; proceed with caution.
 */ 
 
 public abstract class StandardCommands 
@@ -473,6 +473,7 @@ public abstract class StandardCommands
 					}
 				}
 			},
+			/* The save/load functionality only works on linux platforms at the moment. */
 			new Command("save", 0, new String[] {})
 			{
 				@Override

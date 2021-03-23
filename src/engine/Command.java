@@ -1,8 +1,8 @@
 package engine;
 
 /*
-	Next goal is to change String[] arguments member to an enum type and
-	make Command class implement the Runnable interface.
+	Next goal is to change String[] arguments member to an enum type.
+	Can't implement the Runnable interface without ruining the execute() function.
 */
 
 public abstract class Command {

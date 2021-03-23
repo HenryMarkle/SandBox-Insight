@@ -3,6 +3,13 @@ package engine;
 // TODO Learn synchronization methods.
 // TODO Learn multithreading programs.
 
+/*
+	Can't decide whether I want to make Engine static or not..
+	
+	Engine needs to me designed to run on a separate thread to 
+	implement a functioning GUI.
+*/
+
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Set;
@@ -12,11 +19,11 @@ public class Engine implements Runnable {
 	
 	private boolean allowCustomCommands = false;
 	
-	private DataBase data;
+	private DataBase data;	// PLaning on paramatizing this.
 	
 	private HashMap<String, Command> customCommands = new HashMap<String, Command>();
 	
-	private final Scanner scanner;
+	private final Scanner scanner;	// Instantiating more than one Engine would be problematic because of this.
 	
 	// Constructors
 	
@@ -65,13 +72,13 @@ public class Engine implements Runnable {
 		newCustomCommands.forEach(s -> customCommands.put(s.name, s));
 	}
 	
-	// Find a way to pass by value
-	public final void setDataBase(DataBase d)
+
+	public final void setDataBase(DataBase d)	// Find a way to pass by value
 	{
 		if (d != null) data = d;
 	}
 	
-	private boolean duplicateCommands()
+	private boolean duplicateCommands()	// Fix ugly code..
 	{
 		if (customCommands.size() > 0)
 		{
@@ -93,7 +100,7 @@ public class Engine implements Runnable {
 		this.allowCustomCommands = true;
 	}
 	
-	public void closeScanner()
+	public void closeScanner()	// Once closed, other instances would have closed input stream. 
 	{
 		scanner.close();
 	}
@@ -113,29 +120,34 @@ public class Engine implements Runnable {
 		do
 		{
 			// Take input
+			
 			System.out.print("Console Command: ");
 			String input = scanner.nextLine();
 			
-			if (input == null || input.isEmpty() || input.isBlank()) continue;
+			if (input == null || input.isEmpty() || input.isBlank()) continue;	// May not be necessary..
 			
-			if (input.contentEquals("exit") || input.contentEquals("exit")) break;
+			if (input.contentEquals("exit") || input.contentEquals("exit")) break;	// A way to exit the loop.
 			
-			String[] line = input.split(" ");
+			String[] line = input.split(" ");	// Make this variable re-usable rather than re-instantiating it again and again.
 			
-			System.out.printf("\nCommand: \"%s\"\n", line[0]); // Debug
+			System.out.printf("\nCommand: \"%s\"\n", line[0]);	// Debug
 			
-			// Identify command
+			// Identify the command
 			
 			Command command;
 			
+				// Look in custom commands first.
+			
 			if (allowCustomCommands && customCommands.containsKey(line[0]))
-			{
 				command = customCommands.get(line[0]);
-			}
-			else if (StandardCommands.COMMANDS.containsKey(line[0]))
-			{
+			
+				// Then look in the standard commands.
+			
+			else if (StandardCommands.COMMANDS.containsKey(line[0])) 
 				command = StandardCommands.COMMANDS.get(line[0]);
-			}
+			
+				// If non-existent, declare that it is not.
+			
 			else
 			{
 				System.out.printf("\nUnknown command \"%s\".\n", line[0]);
@@ -143,21 +155,31 @@ public class Engine implements Runnable {
 			}
 			
 			
-			// Execute command
+			// Execute the command
 			
 			boolean result = command.execute(line, data);
 			System.out.printf("\n%s evaluated to %s.\n", command.name, result ? "true" : "false");  // Debug
 			
 			// Extra stuff then repeat
+			
 			System.out.println();
 			continue;
-		}
-		while(!done);
+			
+		} while(!done);
+		
 		System.out.printf("\nEngine.start() has ended.\n");
 	}
 	
 	public static void main(String[] args) throws Throwable
 	{
-		StandardCommands.init();  // Must run this function first, or standard commands wont load.
+		StandardCommands.init();  // Must run this function first, or standard commands will not load.
+		
+		try {
+			Engine engine = new Engine();
+			engine.run();
+		}
+		catch (Exception e) {
+			System.out.println("Program failed to run.");
+		}
 	}
 }

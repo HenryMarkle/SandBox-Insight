@@ -10,13 +10,12 @@ public class House extends BaseObject
 	private HashSet<Space> spaces = new HashSet<Space>();
 	
 	// Constructors
-	public House(String name)
-	{
-		super(name);
-	}
+	
+	public House(String name) super(name);
 	
 	
 	// Methods
+	
 	public boolean addSpace(String name)
 	{
 		if (name != null)
@@ -26,10 +25,7 @@ public class House extends BaseObject
 				spaces.add(new Space(name));
 				return true;
 			}
-			else
-			{
-				return false;
-			}
+			else return false;
 		}
 		return false;
 	}
@@ -81,18 +77,11 @@ public class House extends BaseObject
 			s.deleteAllItems();
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+		else return false;
 	}
 	
 	public void deleteAllSpaces()
-	{
-//		spaces.forEach(s -> {
-//			if (Space.allNames.contains(s.name)) Space.allNames.remove(s.name);
-//		});
-		
+	{	
 		spaces.clear();
 	}
 	

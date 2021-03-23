@@ -8,8 +8,5 @@ public abstract class BaseObject implements Serializable {
 	
 	private final static long serialVersionUID = 0001;
 	
-	public BaseObject(String name)
-	{
-		this.name = name;
-	}
+	public BaseObject(String name) this.name = name;
 }

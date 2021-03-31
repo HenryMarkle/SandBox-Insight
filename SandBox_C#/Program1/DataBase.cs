@@ -17,7 +17,7 @@ namespace SandBox
 
         public DataBase ()
         {
-            Houses = new Dictionary<string, House>();
+            Houses = new Dictionary <string, House> ();
 
             LHouse = Dhouse;
             LSpace = DSpace;

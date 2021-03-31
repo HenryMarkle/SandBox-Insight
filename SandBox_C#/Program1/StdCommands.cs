@@ -12,7 +12,8 @@ namespace SandBox
         internal static ImmutableDictionary <string, Func <string [], DataBase, bool>> CMD 
         { get; private set; }
 
-        /* Standard Commands*/
+        /* Standard Commands */
+        /* Note: Will implement proper commands soon. */
 
         private static bool Check (string [] line, DataBase data)
         {
@@ -26,11 +27,11 @@ namespace SandBox
             if (!Initialized)
             {
                 Dictionary <string, Func <string [], DataBase, bool>> commands =
-                new Dictionary <string, Func <string [], DataBase, bool>>();
+                new Dictionary <string, Func <string [], DataBase, bool>> ();
 
                 commands.Add ("check", Check);
 
-                CMD = commands.ToImmutableDictionary();
+                CMD = commands.ToImmutableDictionary ();
 
                 Initialized = true;
             }

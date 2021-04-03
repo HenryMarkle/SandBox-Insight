@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "enNiJkkwbpwZXBHvOwJTclHPOF5kmfzoAt/7UT1x8NhWOZClh8z1GXz3YDYCtC9xHNYiam7v+YJRsMQ6i0itRg==",
+  "success": true,
+  "projectFilePath": "/home/henry/VS Code/C#/Program1/Program1.csproj",
+  "expectedPackageFiles": [
+    "/home/henry/.nuget/packages/system.collections.immutable/5.0.0/system.collections.immutable.5.0.0.nupkg.sha512",
+    "/home/henry/.nuget/packages/system.text.json/5.0.1/system.text.json.5.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
